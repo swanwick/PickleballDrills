@@ -8,8 +8,10 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // Fetch and Display Data
 async function getDrills() {
     const { data, error } = await supabase
-        .from('drills') // Keep quotes if table name is capitalized
+        .from('"Drills"') // Ensure quotes if table name is capitalized
         .select('*');
+
+    console.log("Supabase Response:", data, error); // Debugging line
 
     if (error) {
         console.error("Error fetching data:", error);
@@ -21,10 +23,9 @@ async function getDrills() {
 
     data.forEach(drill => {
         const listItem = document.createElement("li");
-        listItem.textContent = drill.name; // Adjust based on your table columns
+        listItem.textContent = drill.name; // Adjust this based on your table columns
         list.appendChild(listItem);
     });
 }
 
-// Run function when page loads
 document.addEventListener("DOMContentLoaded", getDrills);
