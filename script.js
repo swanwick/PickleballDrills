@@ -8,7 +8,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // Fetch and Display Data
 async function getDrills() {
     const { data, error } = await supabase
-        .from('"Drills"') // Ensure quotes if table name is capitalized
+        .from('drills') // Ensure quotes if table name is capitalized
         .select('*');
 
     console.log("Supabase Response:", data, error); // Debugging line
